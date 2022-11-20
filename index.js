@@ -3,8 +3,6 @@ const fs=require("fs");
 let homeContent="";
 let projectContent="";
 let registrationContent="";
-let p=process.argv.slice(2);
-let port=parseInt(p);
 fs.readFile("home.html",(err,home) =>
 {
     if(err)
@@ -13,6 +11,7 @@ fs.readFile("home.html",(err,home) =>
     }
     homeContent=home;
 });
+
 fs.readFile("project.html",(err,project) =>
 {
     if(err)
@@ -29,6 +28,7 @@ fs.readFile("registration.html",(err,registration) =>
     }
     registrationContent=registration;
 });
+let args = require("minimist")(process.argv.slice(2));
 http.createServer((request,response) =>
 {
 let url=request.url;
@@ -49,4 +49,4 @@ let url=request.url;
             break;
    }
 })
-.listen(port);
+.listen(args["port"]);
