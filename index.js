@@ -9,7 +9,7 @@ fs.readFile("home.html",(err,home) =>
     {
         throw err;
     }
-    homeContent=home;
+    homeContent=home.toString();
 });
 
 fs.readFile("project.html",(err,project) =>
@@ -18,7 +18,7 @@ fs.readFile("project.html",(err,project) =>
     {
         throw err;
     }
-    projectContent=project;
+    projectContent=project.toString();
 });
 fs.readFile("registration.html",(err,registration) =>
 {
@@ -26,7 +26,7 @@ fs.readFile("registration.html",(err,registration) =>
     {
         throw err;
     }
-    registrationContent=registration;
+    registrationContent=registration.toString();
 });
 let args = require("minimist")(process.argv.slice(2));
 http.createServer((request,response) =>
@@ -35,11 +35,11 @@ let url=request.url;
    response.writeHead(200,{"Content-Type" : "text/html"});
    switch(url)
    {
-     case "/project.html":
+     case "/project":
         response.write(projectContent);
         response.end();
         break;
-     case "/registration.html":
+     case "/registration":
             response.write(registrationContent);
             response.end();
             break;

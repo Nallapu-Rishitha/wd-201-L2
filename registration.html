@@ -23,11 +23,11 @@
     </head>
     
         <body>
-            <a href="./project.html">Project Page</a>
+            <a href="./project">Project Page</a>
 
             <body class="container-fluid">
                 <div  id="box">
-                    <form id="user-form" >
+                    <form id="user-form">
                         <h3>Registration Form </h3>
                         <div class="mb-2">
                             <label class="form-label ms-1 mt-1" for="name">UserName:</label>
@@ -69,50 +69,42 @@
                       <div class="divide-y divide-gray-300/50 " id="user-entries"></div>
                     </div>
               </div>
-
-
-
                <script>
-                    let userForm=document.getElementById("user-form");
-                    const retrieveEntries=()=>
-                    {
-                       let entries=localStorage.getItem("user-entries");
-                       if(entries){entries=JSON.parse(entries);}
-                       else{entries=[];}
-                       return entries;
-                    } 
+                         let userForm=document.getElementById("user-form");
+const retrieveEntries=()=>{
+    let entries=localStorage.getItem("user-entries");
+    if(entries){entries=JSON.parse(entries);}
+    else{entries=[];}
+    return entries;
+}
 
-                    window.onload = function() 
-                    {
-                        var date = new Date();
-                        var dd = date.getDate();
-                        var mm = date.getMonth() + 1;
-                        var yyyy = date.getFullYear();
-                        if (dd < 10) 
-                        {
-                            dd = "0" + dd;
-                        }
-                        if (mm < 10) 
-                        {
-                            mm = "0" + mm;
-                        }
-                        minYear = yyyy - 55; 
-                        maxYear = yyyy - 18; 
+window.onload = function() {
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1;
+    var yyyy = date.getFullYear();
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    if (mm < 10) {
+      mm = "0" + mm;
+    }
+    minYear = yyyy - 55; 
+    maxYear = yyyy - 18; 
 
-                        var min = minYear + "-" + mm + "-" + dd;
-                        var max = maxYear + "-" + mm + "-" + dd;
+    var min = minYear + "-" + mm + "-" + dd;
+    var max = maxYear + "-" + mm + "-" + dd;
 
-                        document.getElementById("dob").setAttribute("min", min);
-                        document.getElementById("dob").setAttribute("max", max);
-                    };
+    document.getElementById("dob").setAttribute("min", min);
+    document.getElementById("dob").setAttribute("max", max);
+  };
 
 
-                    let userEntries=retrieveEntries();
-                    const displayEntries=()=>
-                    {
-                         const entries=retrieveEntries();
-                        const tableEntries=entries.map((entry)=>{
-                        const nameCell=`<td class='border px-4 py-2'>${entry.name}</td>`;
+let userEntries=retrieveEntries();
+const displayEntries=()=>{
+    const entries=retrieveEntries();
+    const tableEntries=entries.map((entry)=>{
+        const nameCell=`<td class='border px-4 py-2'>${entry.name}</td>`;
         const emailCell=`<td class='border px-4 py-2'>${entry.email}</td>`;
         const passwordCell=`<td class='border px-4 py-2'>${entry.password}</td>`;
         const dobCell=`<td class='border px-4 py-2'>${entry.dob}</td>`;
@@ -151,6 +143,6 @@ userEntries.push(entry);
 }
 userForm.addEventListener("submit",saveUserForm);
 displayEntries();
-</script>
-</body>
+               </script>
+        </body>
 </html>
